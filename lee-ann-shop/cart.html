@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart | Lee Ann Catalogue</title>
+    <meta name="description" content="Review your Lee Ann Catalogue order before checkout." />
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-page="cart">
+    <header class="site-header">
+      <div class="container-page header-bar">
+        <a href="index.html" class="brand">
+          <img class="brand-mark" src="assets/logo.svg" alt="" />
+          <div>
+            <div class="brand-name">Lee Ann Catalogue</div>
+            <div class="brand-tag">Services · All divisions</div>
+          </div>
+        </a>
+        <nav class="nav-desktop" aria-label="Primary">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="shop.html" class="nav-link">Catalogue</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="cart.html" class="nav-link cart-link is-active">Cart <span class="cart-count" data-cart-count hidden>0</span></a>
+          <a href="shop.html" class="btn btn-primary">View catalogue</a>
+        </nav>
+        <button type="button" class="nav-toggle" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">≡</button>
+      </div>
+      <nav class="nav-mobile" data-nav-mobile>
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Catalogue</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="cart.html" class="nav-link cart-link is-active">Cart <span class="cart-count" data-cart-count hidden>0</span></a>
+        <a href="shop.html" class="btn btn-primary">View catalogue</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container-page hero-pad">
+          <div class="eyebrow">Cart</div>
+          <h1>Your request.</h1>
+          <p>These are Lee Ann services. Change the list, then send it through checkout. Prices are not shown yet.</p>
+        </div>
+      </section>
+      <section class="container-page section-pad" data-cart></section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container-page footer-grid cols-4">
+        <div class="footer-brand">
+          <div class="brand-name">Lee Ann Catalogue</div>
+          <p>The online store of Lee Ann Holdings — the same services as the five divisions, in one request list.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Catalogue</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Catalogue</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Divisions</h4>
+          <ul>
+            <li><a href="shop.html?cat=transportation">Transportation</a></li>
+            <li><a href="shop.html?cat=technology">Technology</a></li>
+            <li><a href="shop.html?cat=supply-procurement">Supply &amp; Procurement</a></li>
+            <li><a href="shop.html?cat=gas-aircon">Gas &amp; Aircon</a></li>
+            <li><a href="shop.html?cat=construction">Construction</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>The group</h4>
+          <ul>
+            <li><a href="../">Lee Ann Holdings</a></li>
+            <li><a href="../lee-ann-transportation/index.html">Transportation</a></li>
+            <li><a href="../lee-ann-tech/index.html">Technology</a></li>
+            <li><a href="../lee-ann-supply-procurement/index.html">Supply &amp; Procurement</a></li>
+            <li><a href="../lee-ann-gas-aircon/index.html">Gas &amp; Aircon</a></li>
+            <li><a href="../lee-ann-construction/index.html">Construction</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="container-page footer-bottom">
+        <span>© <span data-year>2026</span> Lee Ann Catalogue. All rights reserved.</span>
+        <span>Part of Lee Ann Holdings</span>
+      </div>
+    </footer>
+    <script src="js/catalog.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/pages.js"></script>
+  </body>
+</html>
