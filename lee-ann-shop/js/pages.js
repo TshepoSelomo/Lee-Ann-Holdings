@@ -329,6 +329,7 @@
       var note = document.querySelector("[data-checkout-note]");
       var opened = window.open(wa, "_blank", "noopener,noreferrer");
       if (note) {
+        note.hidden = false;
         note.replaceChildren();
         note.append(
           opened
