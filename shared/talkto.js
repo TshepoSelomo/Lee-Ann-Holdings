@@ -20,7 +20,7 @@
     ".talkto-panel label{display:block;margin-top:0.85rem;font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted-foreground,oklch(47% 0.03 258))}" +
     ".talkto-panel textarea{display:block;width:100%;margin-top:0.35rem;border:1px solid var(--input,oklch(90% 0.015 250));background:var(--card,#fff);color:inherit;padding:0.55rem 0.65rem;font:inherit;font-size:0.875rem;line-height:1.45;resize:vertical}" +
     ".talkto-actions{display:flex;flex-direction:column;gap:0.45rem;margin-top:0.85rem}" +
-    ".talkto-actions button,.talkto-actions a{display:block;border:1px solid var(--primary,oklch(24% 0.055 265));background:var(--primary,oklch(24% 0.055 265));color:var(--primary-foreground,oklch(97% 0.01 250));padding:0.55rem 0.75rem;font:inherit;font-size:0.8rem;font-weight:600;text-align:center;cursor:pointer}" +
+    ".talkto-actions button,.talkto-actions a{display:block;border:1px solid var(--primary,oklch(24% 0.055 265));background:var(--primary,oklch(24% 0.055 265));color:var(--primary-foreground,oklch(97% 0.01 250));padding:0.55rem 0.75rem;font:inherit;font-size:0.8rem;font-weight:600;text-align:center;text-decoration:none;cursor:pointer}" +
     ".talkto-actions .talkto-line{border-color:var(--border,oklch(90% 0.015 250));background:transparent;color:var(--foreground,oklch(24% 0.055 265))}";
   document.head.appendChild(style);
 
@@ -37,8 +37,10 @@
     '<label>Message<textarea rows="3" data-talkto-message placeholder="What do you need?"></textarea></label>' +
     '<div class="talkto-actions">' +
     '<button type="button" data-talkto-whatsapp>Send on WhatsApp</button>' +
-    '<button type="button" class="talkto-line" data-talkto-email>Send by email</button>' +
-    '<a class="talkto-line" href="tel:' +
+    '<a class="talkto-line" data-talkto-email href="mailto:' +
+    EMAIL +
+    '">Send by email</a>' +
+    '<a class="talkto-line" data-talkto-call href="tel:' +
     PHONE_TEL +
     '">Call ' +
     PHONE_DISPLAY +
@@ -68,15 +70,37 @@
     setOpen(panel.hidden);
   });
 
+  var emailLink = root.querySelector("[data-talkto-email]");
+  var callLink = root.querySelector("[data-talkto-call]");
+
+  function emailHref() {
+    return (
+      "https://mail.google.com/mail/?view=cm&fs=1&to=" +
+      encodeURIComponent(EMAIL) +
+      "&su=" +
+      encodeURIComponent("Message from the Lee Ann website") +
+      "&body=" +
+      encodeURIComponent(messageText())
+    );
+  }
+
+  function armEmail() {
+    emailLink.href = emailHref();
+  }
+
+  emailLink.addEventListener("pointerdown", armEmail);
+  emailLink.addEventListener("click", function (event) {
+    armEmail();
+    window.open(emailLink.href, "_blank", "noopener");
+    event.preventDefault();
+  });
+  message.addEventListener("input", armEmail);
+  armEmail();
+  callLink.href = "tel:" + PHONE_TEL;
+
   root.querySelector("[data-talkto-whatsapp]").addEventListener("click", function () {
     var url = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(messageText());
     window.open(url, "_blank", "noopener");
-  });
-
-  root.querySelector("[data-talkto-email]").addEventListener("click", function () {
-    var subject = encodeURIComponent("Message from the Lee Ann website");
-    var body = encodeURIComponent(messageText());
-    window.location.href = "mailto:" + EMAIL + "?subject=" + subject + "&body=" + body;
   });
 
   document.addEventListener("keydown", function (event) {
