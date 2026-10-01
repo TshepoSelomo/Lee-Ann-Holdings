@@ -61,7 +61,7 @@ export function Contact() {
                 <div className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">
                   Office
                 </div>
-                <div className="mt-2 text-sm font-medium">South Africa</div>
+                <div className="mt-2 text-sm font-medium">45 Bahamas, Cosmo City, Roodepoort</div>
               </div>
             </div>
           </div>
