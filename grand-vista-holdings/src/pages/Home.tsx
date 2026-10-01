@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import heroSkyline from "../assets/hero-skyline.jpg";
+import { Seo } from "../components/Seo";
 import { divisions } from "../data/divisions";
 
 const reasons = [
@@ -20,6 +21,11 @@ const reasons = [
 export function Home() {
   return (
     <div>
+      <Seo
+        title="Lee Ann Holdings — Five Divisions, One Standard of Excellence"
+        description="Lee Ann Holdings is a diversified group in Cosmo City, Roodepoort, with transportation, technology, supply and procurement, gas and aircon, and construction."
+        path="/"
+      />
       <section className="relative isolate overflow-hidden bg-navy-deep text-primary-foreground">
         <img
           src={heroSkyline}

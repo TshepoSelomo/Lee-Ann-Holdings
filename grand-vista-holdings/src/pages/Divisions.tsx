@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Seo } from "../components/Seo";
 import { divisions } from "../data/divisions";
 
 const listingBlurbs: Record<string, string> = {
@@ -17,6 +18,11 @@ const listingBlurbs: Record<string, string> = {
 export function Divisions() {
   return (
     <div>
+      <Seo
+        title="Divisions — Lee Ann Holdings"
+        description="Five specialist divisions of Lee Ann Holdings: transportation, technology, supply and procurement, gas and aircon, and construction."
+        path="/divisions"
+      />
       <section className="bg-navy-deep text-primary-foreground">
         <div className="container-page hero-pad">
           <div className="eyebrow text-primary-foreground/70">Our divisions</div>

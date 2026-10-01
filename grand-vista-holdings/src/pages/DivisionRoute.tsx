@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
+import { Seo } from "../components/Seo";
 import { getDivision } from "../data/divisions";
 
 export function DivisionRoute() {
@@ -16,5 +17,11 @@ export function DivisionRoute() {
     return <Navigate to="/divisions" replace />;
   }
 
-  return null;
+  return (
+    <Seo
+      title={`${division.name} — Lee Ann Holdings`}
+      description={division.blurb}
+      path={`/divisions/${division.slug}`}
+    />
+  );
 }

@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { Seo } from "../components/Seo";
 import { divisions } from "../data/divisions";
 
 export function Contact() {
@@ -22,6 +23,11 @@ export function Contact() {
 
   return (
     <div>
+      <Seo
+        title="Contact Lee Ann Holdings"
+        description="Contact Lee Ann Holdings at 45 Bahamas, Cosmo City, Roodepoort. Call or WhatsApp 066 002 3685, or email tsheposelomob@gmail.com."
+        path="/contact"
+      />
       <section className="bg-navy-deep text-primary-foreground">
         <div className="container-page hero-pad">
           <div className="eyebrow text-primary-foreground/70">Contact</div>

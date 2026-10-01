@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
 import heroSkyline from "../assets/hero-skyline.jpg";
+import { Seo } from "../components/Seo";
 import { divisions } from "../data/divisions";
 
 export function About() {
   return (
     <div>
+      <Seo
+        title="About Lee Ann Holdings"
+        description="Lee Ann Holdings is a diversified group in Roodepoort operating transportation, technology, supply and procurement, gas and aircon, and construction under one accountable roof."
+        path="/about"
+      />
       <section className="relative isolate overflow-hidden bg-navy-deep text-primary-foreground">
         <img
           src={heroSkyline}
