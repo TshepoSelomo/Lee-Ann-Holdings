@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Lee Ann Holdings">
+  <rect width="64" height="64" fill="#1B2744"/>
+  <path fill="#F4F6F8" d="M11 12h7.2v30.2H33V49H11z"/>
+  <path fill="#F4F6F8" fill-rule="evenodd" d="M36.2 49 45.6 15.2h6.2L61 49h-7.1l-1.7-6.4h-7.2L43.3 49zm8.4-11.6h5.2l-2.6-9.6z"/>
+  <rect x="11" y="54.5" width="50" height="2.4" fill="#8AA0BE"/>
+</svg>
