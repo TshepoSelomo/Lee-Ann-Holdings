@@ -73,24 +73,27 @@ export function Home() {
             resources and standards of the group.
           </p>
         </div>
-        <div className="mt-5 divide-y divide-border border-y border-border">
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
           {divisions.map((division) => (
             <a
               key={division.number}
               href={division.site}
-              className="group grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 py-3 transition-colors hover:bg-muted/50 sm:gap-6 md:py-3.5"
+              className="group flex min-w-0 flex-col overflow-hidden border border-border bg-card transition-colors hover:border-accent"
             >
-              <div className="w-10 shrink-0 font-display text-sm font-bold text-accent md:w-14 md:text-base">
-                {division.number}
+              <div className="aspect-[16/10] overflow-hidden">
+                <img
+                  src={division.image}
+                  alt={division.imageAlt}
+                  width={1600}
+                  height={1000}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
-              <div className="min-w-0">
-                <div className="font-display text-xl font-bold md:text-2xl">{division.name}</div>
-                <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                  {division.blurb}
-                </p>
-              </div>
-              <div className="shrink-0 text-lg text-muted-foreground transition-transform group-hover:translate-x-1">
-                →
+              <div className="flex flex-1 flex-col p-4">
+                <div className="text-xs font-semibold tracking-[0.16em] text-accent">{division.number}</div>
+                <div className="mt-1 font-display text-xl font-bold">{division.name}</div>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{division.blurb}</p>
+                <div className="mt-3 text-sm font-semibold text-accent">View division →</div>
               </div>
             </a>
           ))}

@@ -79,10 +79,17 @@ export function Contact() {
                 <a
                   key={division.slug}
                   href={division.site}
-                  className="group flex items-center justify-between py-4 transition-colors hover:bg-muted/50"
+                  className="group flex items-center gap-4 py-3 transition-colors hover:bg-muted/50"
                 >
+                  <img
+                    src={division.image}
+                    alt=""
+                    width={320}
+                    height={200}
+                    className="h-14 w-24 shrink-0 object-cover"
+                  />
                   <span className="font-display text-base font-bold">{division.name}</span>
-                  <span className="text-muted-foreground transition-transform group-hover:translate-x-1">
+                  <span className="ml-auto text-muted-foreground transition-transform group-hover:translate-x-1">
                     →
                   </span>
                 </a>

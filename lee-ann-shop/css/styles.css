@@ -388,6 +388,34 @@ main {
   transform: translateX(0.25rem);
 }
 
+.list-row:has(.list-photo) {
+  grid-template-columns: 4.5rem minmax(0, 1fr) auto;
+}
+
+.list-photo {
+  display: block;
+  width: 4.5rem;
+  height: 3.4rem;
+  object-fit: cover;
+}
+
+.list-row:has(.list-photo) .list-num {
+  display: none;
+}
+
+.photo-band {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.35rem;
+}
+
+.photo-band img {
+  display: block;
+  width: 100%;
+  height: 11rem;
+  object-fit: cover;
+}
+
 .panel-navy {
   background: var(--navy-deep);
   color: var(--primary-foreground);
@@ -783,6 +811,15 @@ textarea {
   .list-row {
     gap: 1.5rem;
     padding-block: 0.875rem;
+  }
+
+  .list-row:has(.list-photo) {
+    grid-template-columns: 8.5rem minmax(0, 1fr) auto;
+  }
+
+  .list-photo {
+    width: 8.5rem;
+    height: 5.75rem;
   }
 
   .list-num {

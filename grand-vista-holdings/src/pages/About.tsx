@@ -74,12 +74,18 @@ export function About() {
       </section>
 
       <section className="border-t border-border bg-muted/40">
-        <div className="container-page grid gap-px bg-border py-0 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="container-page grid gap-3 py-6 sm:grid-cols-2 lg:grid-cols-5">
           {divisions.map((division) => (
-            <a key={division.slug} href={division.site} className="bg-background px-5 py-5 text-center transition-colors hover:bg-card">
-              <div className="font-display text-sm font-bold">{division.name}</div>
-              <div className="mt-2 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                Division
+            <a key={division.slug} href={division.site} className="group overflow-hidden bg-background">
+              <img
+                src={division.image}
+                alt={division.imageAlt}
+                width={800}
+                height={500}
+                className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="px-3 py-3 text-center">
+                <div className="font-display text-sm font-bold">{division.name}</div>
               </div>
             </a>
           ))}
