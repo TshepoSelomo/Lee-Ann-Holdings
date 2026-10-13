@@ -22,7 +22,7 @@ export function Home() {
   return (
     <div>
       <Seo
-        title="Lee Ann Holdings — Five Divisions, One Standard of Excellence"
+        title="Lee Ann Holdings Testing — Five Divisions, One Standard of Excellence"
         description="Lee Ann Holdings is a diversified group in Cosmo City, Roodepoort, with transportation, technology, supply and procurement, gas and aircon, and construction."
         path="/"
       />
