@@ -1,23 +1,34 @@
-import { useState } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { divisions } from "../data/divisions";
 import { withBase } from "../lib/paths";
 
 const navItems = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/divisions", label: "Divisions" },
-  { to: "/contact", label: "Contact" },
+  { to: "/", label: "Home", end: true },
+  { to: "/about", label: "About", end: true },
+  { to: "/divisions", label: "Divisions", end: false },
+  { to: "/catalogue", label: "Catalogue", end: true },
+  { to: "/contact", label: "Contact", end: true },
 ];
+
+function navClass(isActive: boolean) {
+  return isActive ? "nav-link font-semibold text-foreground" : "nav-link";
+}
 
 export function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setMenuOpen(false);
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/95 backdrop-blur">
         <div className="container-page grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-2.5 sm:flex sm:flex-wrap sm:justify-between">
-          <Link to="/" className="flex min-w-0 items-center gap-3" onClick={() => setMenuOpen(false)}>
+          <Link to="/" className="flex min-w-0 items-center gap-3">
             <img src={withBase("/logo.svg")} alt="" className="h-10 w-10 shrink-0" width="40" height="40" />
             <div className="min-w-0 leading-tight">
               <div className="truncate font-display text-lg font-bold">Lee Ann Holdings</div>
@@ -26,22 +37,12 @@ export function Layout() {
               </div>
             </div>
           </Link>
-          <nav className="hidden items-center gap-7 md:flex">
+          <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
             {navItems.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.to === "/"}
-                className={({ isActive }) =>
-                  isActive ? "nav-link font-semibold text-foreground" : "nav-link"
-                }
-              >
+              <NavLink key={item.to} to={item.to} end={item.end} className={({ isActive }) => navClass(isActive)}>
                 {item.label}
               </NavLink>
             ))}
-            <a href={withBase("/lee-ann-shop/index.html")} className="nav-link">
-              Catalogue
-            </a>
             <Link
               to="/contact"
               className="bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-secondary"
@@ -60,30 +61,16 @@ export function Layout() {
           </button>
         </div>
         {menuOpen ? (
-          <nav className="border-t border-border px-4 py-4 md:hidden">
+          <nav className="border-t border-border px-4 py-4 md:hidden" aria-label="Primary">
             <div className="flex flex-col gap-3">
               {navItems.map((item) => (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  end={item.to === "/"}
-                  className="nav-link py-1"
-                  onClick={() => setMenuOpen(false)}
-                >
+                <NavLink key={item.to} to={item.to} end={item.end} className={({ isActive }) => `${navClass(isActive)} py-1`}>
                   {item.label}
                 </NavLink>
               ))}
-              <a
-                href={withBase("/lee-ann-shop/index.html")}
-                className="nav-link py-1"
-                onClick={() => setMenuOpen(false)}
-              >
-                Catalogue
-              </a>
               <Link
                 to="/contact"
                 className="mt-2 inline-flex w-fit bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
-                onClick={() => setMenuOpen(false)}
               >
                 Get in touch
               </Link>
@@ -112,9 +99,9 @@ export function Layout() {
             <ul className="mt-4 space-y-2 text-sm">
               {divisions.map((division) => (
                 <li key={division.slug}>
-                  <a href={division.site} className="hover:underline">
+                  <Link to={division.to} className="hover:underline">
                     {division.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -135,14 +122,14 @@ export function Layout() {
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="hover:underline">
-                  Contact
+                <Link to="/catalogue" className="hover:underline">
+                  Catalogue
                 </Link>
               </li>
               <li>
-                <a href={withBase("/lee-ann-shop/index.html")} className="hover:underline">
-                  Catalogue
-                </a>
+                <Link to="/contact" className="hover:underline">
+                  Contact
+                </Link>
               </li>
             </ul>
           </div>

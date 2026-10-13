@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /Lee-Ann-Holdings/lee-ann-shop/cart.html
-Disallow: /Lee-Ann-Holdings/lee-ann-shop/checkout.html
 
-Sitemap: https://tsheposelomo.github.io/Lee-Ann-Holdings/sitemap.xml
+Sitemap: https://leeannholdings.co.za/sitemap.xml

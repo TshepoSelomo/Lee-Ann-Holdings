@@ -76,7 +76,7 @@ export function About() {
       <section className="border-t border-border bg-muted/40">
         <div className="container-page grid gap-3 py-6 sm:grid-cols-2 lg:grid-cols-5">
           {divisions.map((division) => (
-            <a key={division.slug} href={division.site} className="group overflow-hidden bg-background">
+            <Link key={division.slug} to={division.to} className="group overflow-hidden bg-background">
               <img
                 src={division.image}
                 alt={division.imageAlt}
@@ -87,7 +87,7 @@ export function About() {
               <div className="px-3 py-3 text-center">
                 <div className="font-display text-sm font-bold">{division.name}</div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

@@ -10,21 +10,23 @@ function pagesBase() {
   return `/${repo}/`;
 }
 
-const divisionSites = [
-  "lee-ann-transportation",
-  "lee-ann-tech",
-  "lee-ann-supply-procurement",
-  "lee-ann-gas-aircon",
-  "lee-ann-construction",
-  "lee-ann-shop",
-];
+const legacyRoutes: Record<string, string> = {
+  "lee-ann-transportation": "/divisions/transportation",
+  "lee-ann-tech": "/divisions/technology",
+  "lee-ann-supply-procurement": "/divisions/supply-procurement",
+  "lee-ann-gas-aircon": "/divisions/gas-aircon",
+  "lee-ann-construction": "/divisions/construction",
+  "lee-ann-shop": "/catalogue",
+};
 
-function rewriteDivisionIndex(url: string | undefined) {
-  const [pathname, query] = (url ?? "/").split("?");
-  const decoded = decodeURIComponent(pathname);
-  const site = divisionSites.find((name) => decoded === `/${name}` || decoded === `/${name}/`);
-  if (!site) return url;
-  return `/${site}/index.html${query ? `?${query}` : ""}`;
+function redirectLegacy(url: string | undefined) {
+  const pathname = decodeURIComponent((url ?? "/").split("?")[0]);
+  const site = Object.keys(legacyRoutes).find(
+    (name) => pathname === `/${name}` || pathname.startsWith(`/${name}/`),
+  );
+  if (!site) return null;
+  const base = pagesBase().replace(/\/$/, "");
+  return `${base}${legacyRoutes[site]}`;
 }
 
 /** GitHub Pages has no SPA fallback, so unknown routes use a copy of the app shell. */
@@ -32,15 +34,27 @@ function githubPagesFallback(): Plugin {
   return {
     name: "github-pages-fallback",
     configureServer(server) {
-      server.middlewares.use((req, _res, next) => {
-        req.url = rewriteDivisionIndex(req.url);
-        next();
+      server.middlewares.use((req, res, next) => {
+        const location = redirectLegacy(req.url);
+        if (!location) {
+          next();
+          return;
+        }
+        res.statusCode = 302;
+        res.setHeader("Location", location);
+        res.end();
       });
     },
     configurePreviewServer(server) {
-      server.middlewares.use((req, _res, next) => {
-        req.url = rewriteDivisionIndex(req.url);
-        next();
+      server.middlewares.use((req, res, next) => {
+        const location = redirectLegacy(req.url);
+        if (!location) {
+          next();
+          return;
+        }
+        res.statusCode = 302;
+        res.setHeader("Location", location);
+        res.end();
       });
     },
     writeBundle(options) {

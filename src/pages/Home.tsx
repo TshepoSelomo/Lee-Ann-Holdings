@@ -75,9 +75,9 @@ export function Home() {
         </div>
         <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
           {divisions.map((division) => (
-            <a
+            <Link
               key={division.number}
-              href={division.site}
+              to={division.to}
               className="group flex min-w-0 flex-col overflow-hidden border border-border bg-card transition-colors hover:border-accent"
             >
               <div className="aspect-[16/10] overflow-hidden">
@@ -95,7 +95,7 @@ export function Home() {
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{division.blurb}</p>
                 <div className="mt-3 text-sm font-semibold text-accent">View division →</div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

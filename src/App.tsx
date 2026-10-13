@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { About } from "./pages/About";
+import { Catalogue } from "./pages/Catalogue";
 import { Contact } from "./pages/Contact";
 import { DivisionRoute } from "./pages/DivisionRoute";
 import { Divisions } from "./pages/Divisions";
@@ -15,6 +16,7 @@ export function App() {
           <Route path="about" element={<About />} />
           <Route path="divisions" element={<Divisions />} />
           <Route path="divisions/:slug" element={<DivisionRoute />} />
+          <Route path="catalogue" element={<Catalogue />} />
           <Route path="contact" element={<Contact />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>

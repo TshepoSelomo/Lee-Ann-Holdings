@@ -39,9 +39,9 @@ export function Divisions() {
       <section className="container-page section-pad">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {divisions.map((division) => (
-            <a
+            <Link
               key={division.slug}
-              href={division.site}
+              to={division.to}
               className={`group flex min-w-0 flex-col overflow-hidden border border-border bg-card transition-colors hover:border-accent${
                 division.slug === "construction" ? " sm:col-span-2 lg:col-span-1" : ""
               }`}
@@ -63,7 +63,7 @@ export function Divisions() {
                 </p>
                 <div className="mt-4 text-sm font-semibold text-accent">View division →</div>
               </div>
-            </a>
+            </Link>
           ))}
           <div className="flex min-w-0 flex-col justify-center bg-navy-deep p-5 text-primary-foreground">
             <div className="font-display text-lg font-bold">Not sure which division you need?</div>

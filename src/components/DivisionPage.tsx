@@ -51,16 +51,16 @@ export function DivisionPage({ division }: { division: Division }) {
           <h2 className="mt-2 text-2xl font-bold md:text-3xl">Services &amp; capabilities</h2>
           <div className="mt-5 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
             {division.services.map((service) => (
-              <a
-                key={service.title}
-                href={division.site.replace(/index\.html$/, "services.html")}
+              <Link
+                key={service.id}
+                to={`/catalogue?division=${division.slug}`}
                 className="bg-card p-4 transition-colors hover:bg-muted/60"
               >
                 <div className="font-display text-base font-bold leading-snug">{service.title}</div>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   {service.description}
                 </p>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

@@ -1,8 +1,12 @@
 import { useState, type FormEvent } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { Seo } from "../components/Seo";
 import { divisions } from "../data/divisions";
 
 export function Contact() {
+  const [params] = useSearchParams();
+  const requestedDivision = divisions.find((division) => division.slug === params.get("division"));
+  const requestedService = params.get("service") ?? "";
   const [sent, setSent] = useState<{ wa: string; mailto: string; opened: boolean } | null>(null);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -76,9 +80,9 @@ export function Contact() {
             <div className="eyebrow">Reach a division directly</div>
             <div className="mt-4 divide-y divide-border border-y border-border">
               {divisions.map((division) => (
-                <a
+                <Link
                   key={division.slug}
-                  href={division.site}
+                  to={division.to}
                   className="group flex items-center gap-4 py-3 transition-colors hover:bg-muted/50"
                 >
                   <img
@@ -92,7 +96,7 @@ export function Contact() {
                   <span className="ml-auto text-muted-foreground transition-transform group-hover:translate-x-1">
                     →
                   </span>
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -111,7 +115,11 @@ export function Contact() {
           <p className="mt-2 text-sm text-muted-foreground">
             Fill in the form below. It opens WhatsApp with your message ready to send, and you can also open it in email.
           </p>
-          <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
+          <form
+            key={`${requestedDivision?.slug ?? ""}-${requestedService}`}
+            className="mt-6 space-y-4"
+            onSubmit={handleSubmit}
+          >
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="block">
                 <span className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">
@@ -142,7 +150,7 @@ export function Contact() {
               <select
                 name="division"
                 className="mt-1.5 w-full border border-input bg-background px-3 py-2.5 text-sm outline-hidden focus:border-accent"
-                defaultValue=""
+                defaultValue={requestedDivision?.name ?? ""}
               >
                 <option value="">Not sure yet</option>
                 {divisions.map((division) => (
@@ -159,6 +167,13 @@ export function Contact() {
                 required
                 rows={6}
                 className="mt-1.5 w-full border border-input bg-background px-3 py-2.5 text-sm outline-hidden focus:border-accent"
+                defaultValue={
+                  requestedService
+                    ? `I would like to request ${requestedService}${
+                        requestedDivision ? ` from ${requestedDivision.name}` : ""
+                      }.`
+                    : ""
+                }
                 placeholder="Tell us what you need — timelines, location, scope."
               />
             </label>

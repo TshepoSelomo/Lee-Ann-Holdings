@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const ORIGIN = "https://tsheposelomo.github.io/Lee-Ann-Holdings";
+const ORIGIN = "https://leeannholdings.co.za";
 
 function upsertMeta(name: string, content: string, attribute: "name" | "property") {
   let tag = document.head.querySelector(`meta[${attribute}="${name}"]`);
